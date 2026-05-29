@@ -11,18 +11,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#0a101a;
-    --bg-2:#0e1622;
-    --panel:#121c2b;
-    --ink:#eef3f8;
-    --muted:#9fb2c7;
-    --line:rgba(255,255,255,.08);
+    --bg:#f4f8ff;
+    --bg-2:#eaf1fb;
+    --panel:#ffffff;
+    --ink:#14202e;
+    --muted:#5a6b7e;
+    --line:rgba(20,40,80,.12);
     --accent:#2f7bf6;
     --accent-2:#5ea8ff;
-    --accent-glow:rgba(47,123,246,.38);
+    --accent-glow:rgba(47,123,246,.30);
     --maxw:1180px;
     --radius:18px;
-    --shadow:0 24px 60px rgba(0,0,0,.5);
+    --shadow:0 20px 50px rgba(20,40,80,.14);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -38,6 +38,12 @@
   a{color:inherit;text-decoration:none}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .accent{color:var(--accent)}
+  /* Dark image-backed sections keep light text on the otherwise-light site */
+  .hero h1,.band h2,.cta h2{color:#f3f7fc}
+  .hero p.lead,.cta p{color:rgba(243,247,252,.86)}
+  .hero .trust,.scroll-cue{color:rgba(243,247,252,.8)}
+  .scroll-cue .mouse{border-color:rgba(243,247,252,.65)}
+  .hero .eyebrow{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
 
   /* ---------- NAV ---------- */
   header{
@@ -46,10 +52,19 @@
     border-bottom:1px solid transparent;
   }
   header.scrolled{
-    background:rgba(12,17,22,.72);
+    background:rgba(244,248,255,.82);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
+    box-shadow:0 6px 24px rgba(20,40,80,.06);
   }
+  /* Nav sits over the dark hero at the top (light text), flips dark once scrolled onto the light page */
+  .brand{color:#f3f7fc}
+  header.scrolled .brand,footer .brand{color:var(--ink)}
+  header .nav-links a:not(.btn){color:rgba(255,255,255,.86)}
+  header.scrolled .nav-links a:not(.btn){color:var(--muted)}
+  header.scrolled .nav-links a:not(.btn):hover{color:var(--ink)}
+  header .menu-btn{color:#f3f7fc}
+  header.scrolled .menu-btn{color:var(--ink)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
   .brand{display:flex;align-items:center;gap:12px}
   .logo{
@@ -171,14 +186,14 @@
   /* ---------- SERVICES ---------- */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .card{
-    background:linear-gradient(180deg,var(--panel),#10161d);
+    background:linear-gradient(180deg,#ffffff,#eef4fc);
     border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;
     position:relative;overflow:hidden;transition:transform .35s ease,border-color .35s,box-shadow .35s;
   }
   .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 100% 0,var(--accent-glow),transparent 60%);opacity:0;transition:opacity .35s}
-  .card:hover{transform:translateY(-8px);border-color:rgba(255,122,24,.4);box-shadow:var(--shadow)}
+  .card:hover{transform:translateY(-8px);border-color:rgba(47,123,246,.4);box-shadow:var(--shadow)}
   .card:hover::before{opacity:.5}
-  .card .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(255,122,24,.12);border:1px solid rgba(255,122,24,.25);margin-bottom:20px}
+  .card .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(47,123,246,.12);border:1px solid rgba(47,123,246,.25);margin-bottom:20px}
   .card .ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.8}
   .card h3{font-size:1.3rem;margin-bottom:10px}
   .card p{color:var(--muted);font-size:.97rem}
@@ -223,7 +238,7 @@
   /* ---------- TESTIMONIALS ---------- */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .quote{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px}
-  .stars{color:var(--accent-2);font-size:1.05rem;letter-spacing:3px;margin-bottom:14px}
+  .stars{color:var(--accent);font-size:1.05rem;letter-spacing:3px;margin-bottom:14px}
   .quote p{color:#dbe6f0;font-size:1.02rem;margin-bottom:18px}
   .quote .who{display:flex;align-items:center;gap:12px}
   .quote .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:700;color:#fff}
@@ -247,6 +262,12 @@
   .contact-card svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8;flex:none}
   .contact-card b{display:block;font-size:1rem}
   .contact-card span{color:var(--muted);font-size:.85rem}
+  /* contact cards + feature badges live inside the dark CTA band → keep light */
+  .cta .contact-card,.cta .feat{border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
+  .cta .contact-card b,.cta .feat b{color:#f3f7fc}
+  .cta .contact-card span,.cta .feat span{color:rgba(243,247,252,.74)}
+  .cta .owner{color:rgba(243,247,252,.82)}
+  .cta .owner b{color:#f3f7fc}
 
   /* ---------- INSURANCE / CLAIMS ---------- */
   .warn{display:flex;gap:20px;align-items:flex-start;background:linear-gradient(135deg,rgba(47,123,246,.14),rgba(47,123,246,.04));
@@ -255,7 +276,7 @@
   .warn .wic svg{width:24px;height:24px;stroke:var(--accent-2);fill:none;stroke-width:1.9}
   .warn h3{font-size:1.2rem;margin-bottom:6px}
   .warn p{color:var(--muted);font-size:.98rem}
-  .warn .code{color:var(--accent-2);font-weight:600}
+  .warn .code{color:var(--accent);font-weight:700}
   .rw{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
   .rw .col{border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;background:var(--panel)}
   .rw .col.right{border-color:rgba(47,123,246,.4);background:linear-gradient(180deg,rgba(47,123,246,.10),transparent)}
@@ -324,7 +345,8 @@
     .feats{grid-template-columns:1fr 1fr}
     .sec{padding:80px 0}
     .hero p.lead{font-size:1.05rem}
-    .nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:rgba(12,17,22,.97);backdrop-filter:blur(14px);padding:24px;gap:18px;border-bottom:1px solid var(--line)}
+    .nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:rgba(255,255,255,.98);backdrop-filter:blur(14px);padding:24px;gap:18px;border-bottom:1px solid var(--line)}
+    .nav-links.open a:not(.btn){color:var(--ink)}
   }
   @media(prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
@@ -360,7 +382,7 @@
   .ai-tabs{display:flex;border-bottom:1px solid var(--line);background:var(--bg-2)}
   .ai-tabs button{flex:1;padding:11px;background:none;border:none;cursor:pointer;
     font:600 .82rem/1 'Inter',sans-serif;color:var(--muted);border-bottom:2px solid transparent}
-  .ai-tabs button.active{color:var(--accent-2);border-bottom-color:var(--accent)}
+  .ai-tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
 
   .ai-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
   .ai-view{display:none;flex-direction:column;gap:12px}
@@ -385,7 +407,7 @@
     color:var(--muted);transition:border-color .2s,background .2s}
   .drop:hover,.drop.drag{border-color:var(--accent);background:rgba(47,123,246,.06);color:var(--ink)}
   .drop svg{width:34px;height:34px;opacity:.8;margin-bottom:8px}
-  .drop b{color:var(--accent-2)}
+  .drop b{color:var(--accent)}
   .drop small{display:block;margin-top:6px;font-size:.74rem}
   .preview-img{width:100%;border-radius:12px;border:1px solid var(--line);max-height:200px;object-fit:cover}
   .triage-note{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
@@ -395,12 +417,12 @@
   .result{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:.88rem}
   .result h5{margin:0 0 6px;font:700 .95rem 'Sora',sans-serif;color:var(--ink)}
   .result .sev{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.74rem;font-weight:700;margin:4px 0 8px}
-  .sev.none,.sev.minor{background:rgba(46,204,113,.18);color:#7ee2a8}
-  .sev.moderate{background:rgba(241,196,15,.18);color:#f4d35e}
-  .sev.severe{background:rgba(231,76,60,.2);color:#ff8b7e}
+  .sev.none,.sev.minor{background:rgba(46,204,113,.18);color:#1c8c4e}
+  .sev.moderate{background:rgba(241,196,15,.22);color:#9a7400}
+  .sev.severe{background:rgba(231,76,60,.18);color:#c0392b}
   .sev.cannot,.sev.unknown{background:rgba(159,178,199,.18);color:var(--muted)}
   .result ul{margin:6px 0;padding-left:18px;color:var(--muted)}
-  .result .flag{margin-top:8px;font-size:.82rem;color:var(--accent-2)}
+  .result .flag{margin-top:8px;font-size:.82rem;color:var(--accent)}
   .ai-note{font-size:.74rem;color:var(--muted);text-align:center;padding:0 8px 4px}
 </style>
 <script>window.ROOFTOPROB_API_BASE = "https://robroofing-backend.vercel.app";</script>
@@ -419,7 +441,7 @@
           </linearGradient>
         </defs>
         <!-- roof + house mark -->
-        <path d="M24 66 L66 24 L108 66 L108 104 L24 104 Z" fill="#eef3f8"/>
+        <path d="M24 66 L66 24 L108 66 L108 104 L24 104 Z" fill="currentColor"/>
         <path d="M14 70 L66 18 L118 70" fill="none" stroke="url(#rbBlue)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M66 17 L38 5 L49 23 Z" fill="#5ea8ff"/>
         <g fill="#2f7bf6">
@@ -430,10 +452,10 @@
         </g>
         <!-- wordmark -->
         <text x="148" y="72" font-family="Sora, 'Segoe UI', sans-serif" font-weight="800" font-size="56" letter-spacing="-1">
-          <tspan fill="#eef3f8">ROOFTOP</tspan><tspan fill="url(#rbBlue)">ROB</tspan>
+          <tspan fill="currentColor">ROOFTOP</tspan><tspan fill="url(#rbBlue)">ROB</tspan>
         </text>
         <line x1="150" y1="94" x2="170" y2="94" stroke="#2f7bf6" stroke-width="3" stroke-linecap="round"/>
-        <text x="178" y="99" font-family="Sora, 'Segoe UI', sans-serif" font-weight="700" font-size="14" letter-spacing="5.5" fill="#9fb2c7">ROOFING &amp; CONSTRUCTION</text>
+        <text x="178" y="99" font-family="Sora, 'Segoe UI', sans-serif" font-weight="700" font-size="14" letter-spacing="5.5" fill="currentColor" opacity=".6">ROOFING &amp; CONSTRUCTION</text>
       </svg>
     </a>
     <nav class="nav-links" id="navlinks">
@@ -735,7 +757,7 @@
           </linearGradient>
         </defs>
         <!-- roof + house mark -->
-        <path d="M24 66 L66 24 L108 66 L108 104 L24 104 Z" fill="#eef3f8"/>
+        <path d="M24 66 L66 24 L108 66 L108 104 L24 104 Z" fill="currentColor"/>
         <path d="M14 70 L66 18 L118 70" fill="none" stroke="url(#rbBlue)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M66 17 L38 5 L49 23 Z" fill="#5ea8ff"/>
         <g fill="#2f7bf6">
@@ -746,10 +768,10 @@
         </g>
         <!-- wordmark -->
         <text x="148" y="72" font-family="Sora, 'Segoe UI', sans-serif" font-weight="800" font-size="56" letter-spacing="-1">
-          <tspan fill="#eef3f8">ROOFTOP</tspan><tspan fill="url(#rbBlue)">ROB</tspan>
+          <tspan fill="currentColor">ROOFTOP</tspan><tspan fill="url(#rbBlue)">ROB</tspan>
         </text>
         <line x1="150" y1="94" x2="170" y2="94" stroke="#2f7bf6" stroke-width="3" stroke-linecap="round"/>
-        <text x="178" y="99" font-family="Sora, 'Segoe UI', sans-serif" font-weight="700" font-size="14" letter-spacing="5.5" fill="#9fb2c7">ROOFING &amp; CONSTRUCTION</text>
+        <text x="178" y="99" font-family="Sora, 'Segoe UI', sans-serif" font-weight="700" font-size="14" letter-spacing="5.5" fill="currentColor" opacity=".6">ROOFING &amp; CONSTRUCTION</text>
       </svg>
       </a>
       <p>Roofing &amp; Construction. Your home &amp; my passion — fully licensed &amp; insured, serving Houston and beyond.</p>
