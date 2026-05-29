@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rooftoprob Roofing &amp; Construction | Houston, TX</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235ea8ff'/%3E%3Cstop offset='1' stop-color='%232f7bf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='10' fill='url(%23g)'/%3E%3Cpath fill='%23fff' d='M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z'/%3E%3Cpath fill='%23fff' fill-opacity='.92' d='M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z'/%3E%3Crect x='30.4' y='10.6' width='3.4' height='7.4' rx='1' fill='%23fff' fill-opacity='.7'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2316181d'/%3E%3Cpath fill='%23e11d1d' d='M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z'/%3E%3Cpath fill='%23fff' d='M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z'/%3E%3C/svg%3E" />
 <meta name="description" content="Rooftoprob Roofing & Construction — fully licensed & insured roofing in Harris County and beyond. Drone roof inspections, repairs, replacements & storm damage. Your home & my passion." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,6 +62,10 @@
   .brand:hover .logo{transform:rotate(-4deg)}
   .brand:hover .logo::after{transform:translateX(120%)}
   .logo svg{width:30px;height:30px;display:block}
+  .brand-logo{height:48px;width:auto;display:block;border-radius:9px;transition:transform .3s ease}
+  .brand:hover .brand-logo{transform:scale(1.03)}
+  footer .brand-logo{height:54px}
+  @media (max-width:560px){.brand-logo{height:40px}}
   .wordmark{display:inline-flex;flex-direction:column;line-height:1.02}
   .wordmark .nm{font-family:'Sora';font-weight:800;font-size:1.15rem;letter-spacing:.01em;color:var(--ink)}
   .wordmark .nm i{font-style:normal;background:linear-gradient(120deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -406,18 +410,8 @@
 <!-- ===== NAV ===== -->
 <header id="head">
   <div class="wrap nav">
-    <a href="#top" class="brand">
-      <span class="logo">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path fill="#fff" d="M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z"/>
-          <path fill="#fff" fill-opacity=".9" d="M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z"/>
-          <rect x="30.4" y="10.6" width="3.4" height="7.4" rx="1" fill="#fff" fill-opacity=".7"/>
-        </svg>
-      </span>
-      <span class="wordmark">
-        <span class="nm">ROOFTOP<i>ROB</i></span>
-        <small>Roofing &amp; Construction</small>
-      </span>
+    <a href="#top" class="brand" aria-label="Rooftoprob Roofing &amp; Construction — home">
+      <img class="brand-logo" src="logo.png" width="1280" height="435" alt="Rooftoprob Roofing &amp; Construction" />
     </a>
     <nav class="nav-links" id="navlinks">
       <a href="#services">Services</a>
@@ -709,18 +703,8 @@
 <footer>
   <div class="wrap foot">
     <div>
-      <a href="#top" class="brand">
-        <span class="logo">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path fill="#fff" d="M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z"/>
-            <path fill="#fff" fill-opacity=".9" d="M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z"/>
-            <rect x="30.4" y="10.6" width="3.4" height="7.4" rx="1" fill="#fff" fill-opacity=".7"/>
-          </svg>
-        </span>
-        <span class="wordmark">
-          <span class="nm">ROOFTOP<i>ROB</i></span>
-          <small>Roofing &amp; Construction</small>
-        </span>
+      <a href="#top" class="brand" aria-label="Rooftoprob Roofing &amp; Construction — home">
+        <img class="brand-logo" src="logo.png" width="1280" height="435" alt="Rooftoprob Roofing &amp; Construction" />
       </a>
       <p>Roofing &amp; Construction. Your home &amp; my passion — fully licensed &amp; insured, serving Houston and beyond.</p>
       <div class="socials">
