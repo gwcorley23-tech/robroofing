@@ -331,6 +331,19 @@
   .quote .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:700;color:#fff}
   .quote .who b{font-size:.95rem}
   .quote .who span{color:var(--muted);font-size:.85rem;display:block}
+  /* Google rating badge + empty review state */
+  .g-rating{display:flex;align-items:center;gap:20px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 26px;max-width:780px;margin:0 auto 30px;box-shadow:var(--shadow)}
+  .g-logo{flex:none;display:grid;place-items:center}
+  .g-info{display:flex;flex-direction:column;gap:2px}
+  .g-stars{color:#f5a623;font-size:1.2rem;letter-spacing:3px;line-height:1}
+  .g-meta b{display:block;font-family:'Sora','Inter',sans-serif;font-weight:700;font-size:1rem}
+  .g-meta span{color:var(--muted);font-size:.88rem}
+  .g-cta{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto}
+  @media(max-width:640px){.g-cta{margin-left:0;width:100%}}
+  .rev-empty{max-width:640px;margin:0 auto;text-align:center;background:var(--panel);border:1px dashed rgba(209,43,43,.35);border-radius:var(--radius);padding:42px 30px}
+  .rev-empty svg{width:44px;height:44px;fill:var(--accent);opacity:.9;margin-bottom:14px}
+  .rev-empty h3{font-size:1.4rem;margin-bottom:10px}
+  .rev-empty p{color:var(--muted);margin-bottom:24px}
 
   /* ---------- CTA / CONTACT ---------- */
   .cta{position:relative;overflow:hidden;border-radius:28px;margin:0 24px;
@@ -810,26 +823,64 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="tag">Reviews</span>
-      <h2>Homeowners who trusted us.</h2>
-      <p>The kind of word-of-mouth that built this business one roof at a time.</p>
+      <h2>Building Houston's trust, one roof at a time.</h2>
+      <p>We're a growing local company earning our reputation the honest way. Had a great experience with Rooftoprob? A quick Google review helps your neighbors find a roofer they can count on.</p>
     </div>
+
+    <!-- Google rating badge -->
+    <div class="g-rating reveal">
+      <span class="g-logo" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="40" height="40">
+          <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+          <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+          <path fill="#FBBC05" d="M11.69 28.18c-.44-1.32-.69-2.73-.69-4.18s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/>
+          <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+        </svg>
+      </span>
+      <div class="g-info">
+        <div class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="g-meta"><b>Google Reviews</b><span>Be one of our first 5-star reviews</span></div>
+      </div>
+      <div class="g-cta">
+        <!-- TODO: paste your Google "write a review" link in href below -->
+        <a href="#" target="_blank" rel="noopener" class="btn">&#9733; Review us on Google</a>
+        <!-- TODO: paste your Google Business Profile link in href below -->
+        <a href="#" target="_blank" rel="noopener" class="btn ghost">See us on Google</a>
+      </div>
+    </div>
+
+    <!-- Friendly empty state — remove this once you have real reviews -->
+    <div class="rev-empty reveal">
+      <svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg>
+      <h3>Your review could be the first.</h3>
+      <p>Rooftoprob is just getting started in Houston. If we've earned it, a quick Google review means the world to Rob — and helps the next homeowner find an honest crew.</p>
+      <!-- TODO: paste your Google "write a review" link in href below -->
+      <a href="#" target="_blank" rel="noopener" class="btn">&#9733; Leave the first review</a>
+    </div>
+
+    <!-- =====================================================================
+         ADD REAL GOOGLE REVIEWS HERE LATER:
+         1) Delete the <div class="rev-empty"> block above.
+         2) Remove the comment wrappers around the block below.
+         3) Duplicate a <div class="quote"> for each review and fill it in.
     <div class="quotes">
       <div class="quote reveal">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>"Showed up on time, explained everything with the drone photos, and the new roof looks incredible. Couldn't ask for a more honest crew."</p>
-        <div class="who"><span class="av">M</span><div><b>Marcus T.</b><span>Houston, TX</span></div></div>
+        <p>"Paste the customer's review text here."</p>
+        <div class="who"><span class="av">A</span><div><b>Reviewer Name</b><span>City, TX</span></div></div>
       </div>
       <div class="quote reveal d1">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>"After the hail storm they handled my whole insurance claim. Stress-free from start to finish — I'll never call anyone else."</p>
-        <div class="who"><span class="av">D</span><div><b>Denise R.</b><span>Montgomery County</span></div></div>
+        <p>"Paste the next review here."</p>
+        <div class="who"><span class="av">B</span><div><b>Reviewer Name</b><span>City, TX</span></div></div>
       </div>
       <div class="quote reveal d2">
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>"Fixed a leak two other companies missed. Fair price, real craftsmanship, and he actually cares. Highly recommend."</p>
-        <div class="who"><span class="av">J</span><div><b>James K.</b><span>Brazos County</span></div></div>
+        <p>"And another one here."</p>
+        <div class="who"><span class="av">C</span><div><b>Reviewer Name</b><span>City, TX</span></div></div>
       </div>
     </div>
+    ===================================================================== -->
   </div>
 </section>
 
