@@ -4,25 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rooftoprob Roofing &amp; Construction | Houston, TX</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2316181d'/%3E%3Cpath fill='%232f7bf6' d='M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z'/%3E%3Cpath fill='%23fff' d='M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2316181d'/%3E%3Cpath fill='%23d12b2b' d='M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z'/%3E%3Cpath fill='%23fff' d='M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z'/%3E%3C/svg%3E" />
 <meta name="description" content="Rooftoprob Roofing & Construction — fully licensed & insured roofing in Harris County and beyond. Drone roof inspections, repairs, replacements & storm damage. Your home & my passion." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#d8e0ed;
-    --bg-2:#c7d3e5;
-    --panel:#e9eff7;
-    --ink:#14202e;
-    --muted:#516074;
-    --line:rgba(20,40,80,.12);
-    --accent:#2f7bf6;
-    --accent-2:#5ea8ff;
-    --accent-glow:rgba(47,123,246,.30);
+    --bg:#dadde1;
+    --bg-2:#caced3;
+    --panel:#eceef0;
+    --ink:#18191c;
+    --muted:#5b616a;
+    --line:rgba(22,24,28,.13);
+    --accent:#d12b2b;
+    --accent-2:#e94b4b;
+    --accent-glow:rgba(209,43,43,.30);
     --maxw:1180px;
     --radius:18px;
-    --shadow:0 20px 50px rgba(20,40,80,.14);
+    --shadow:0 20px 50px rgba(22,24,28,.16);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -52,10 +52,10 @@
     border-bottom:1px solid transparent;
   }
   header.scrolled{
-    background:rgba(216,224,237,.85);
+    background:rgba(218,221,225,.85);
     backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
-    box-shadow:0 6px 24px rgba(20,40,80,.07);
+    box-shadow:0 6px 24px rgba(22,24,28,.08);
   }
   /* Nav sits over the dark hero at the top (light text), flips dark once scrolled onto the light page */
   .brand{color:#f3f7fc}
@@ -110,16 +110,16 @@
   /* fade the dark hero into the page so scrolling flows smoothly */
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:200px;z-index:1;pointer-events:none;
     background:linear-gradient(to bottom,transparent,var(--bg-2))}
-  .hero-bg{position:absolute;inset:-10% 0;z-index:0;will-change:transform;background:#0a101a}
+  .hero-bg{position:absolute;inset:-10% 0;z-index:0;will-change:transform;background:#101113}
   .hero-img{position:absolute;inset:-3%;z-index:0;
-    background:#0a101a url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    background:#101113 url('https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
     animation:kenburns 26s ease-in-out infinite alternate;will-change:transform}
   @keyframes kenburns{0%{transform:scale(1.06) translate(0,0)}100%{transform:scale(1.2) translate(-2.5%,-2%)}}
   .hero-bg::before{
     content:"";position:absolute;inset:0;z-index:1;
     background:
-      radial-gradient(1100px 600px at 78% 12%,rgba(47,123,246,.32),transparent 60%),
-      linear-gradient(160deg,rgba(8,13,22,.78) 0%,rgba(10,18,30,.82) 45%,rgba(7,12,20,.92) 100%);
+      radial-gradient(1100px 600px at 78% 12%,rgba(209,43,43,.32),transparent 60%),
+      linear-gradient(160deg,rgba(12,13,15,.78) 0%,rgba(14,15,17,.82) 45%,rgba(11,12,14,.92) 100%);
   }
   /* subtle roof-shingle pattern */
   .hero-bg::after{
@@ -133,8 +133,8 @@
   }
   /* cinematic layers */
   .aurora{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;z-index:1;pointer-events:none;will-change:transform}
-  .aurora.a1{width:480px;height:480px;background:radial-gradient(circle,rgba(47,123,246,.6),transparent 70%);top:-90px;left:-70px;animation:drift1 19s ease-in-out infinite}
-  .aurora.a2{width:430px;height:430px;background:radial-gradient(circle,rgba(94,168,255,.5),transparent 70%);bottom:-120px;right:-50px;animation:drift2 23s ease-in-out infinite}
+  .aurora.a1{width:480px;height:480px;background:radial-gradient(circle,rgba(209,43,43,.6),transparent 70%);top:-90px;left:-70px;animation:drift1 19s ease-in-out infinite}
+  .aurora.a2{width:430px;height:430px;background:radial-gradient(circle,rgba(233,75,75,.5),transparent 70%);bottom:-120px;right:-50px;animation:drift2 23s ease-in-out infinite}
   @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,46px)}}
   @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-55px,-34px)}}
   .hero-spark{position:absolute;inset:0;z-index:1;pointer-events:none}
@@ -194,9 +194,9 @@
     position:relative;overflow:hidden;transition:transform .35s ease,border-color .35s,box-shadow .35s;
   }
   .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 100% 0,var(--accent-glow),transparent 60%);opacity:0;transition:opacity .35s}
-  .card:hover{transform:translateY(-8px);border-color:rgba(47,123,246,.4);box-shadow:var(--shadow)}
+  .card:hover{transform:translateY(-8px);border-color:rgba(209,43,43,.4);box-shadow:var(--shadow)}
   .card:hover::before{opacity:.5}
-  .card .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(47,123,246,.12);border:1px solid rgba(47,123,246,.25);margin-bottom:20px}
+  .card .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(209,43,43,.12);border:1px solid rgba(209,43,43,.25);margin-bottom:20px}
   .card .ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.8}
   .card h3{font-size:1.3rem;margin-bottom:10px}
   .card p{color:var(--muted);font-size:.97rem}
@@ -209,12 +209,12 @@
     background:linear-gradient(to top,var(--bg),transparent)}
   .band-bg{position:absolute;inset:-15% 0;z-index:0;will-change:transform}
   .band-1 .band-bg{background:
-      linear-gradient(110deg,rgba(8,13,22,.94) 0%,rgba(9,16,26,.80) 45%,rgba(10,18,30,.45) 100%),
+      linear-gradient(110deg,rgba(12,13,15,.94) 0%,rgba(13,14,16,.80) 45%,rgba(14,15,17,.45) 100%),
       url('https://images.unsplash.com/photo-1635424710928-0544e8512eae?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;}
   .band-1 .band-bg::after{content:"";position:absolute;inset:0;opacity:.08;background-image:repeating-linear-gradient(60deg,#fff 0 1px,transparent 1px 30px)}
   .band-inner{position:relative;z-index:2;max-width:600px}
   .band h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;margin-bottom:18px}
-  .band p{color:#cdd9e4;font-size:1.08rem;margin-bottom:14px}
+  .band p{color:#d4d6d9;font-size:1.08rem;margin-bottom:14px}
   .checks{list-style:none;margin-top:22px;display:grid;gap:14px}
   .checks li{display:flex;gap:12px;align-items:flex-start;color:#e6eef5}
   .checks svg{width:22px;height:22px;flex:none;margin-top:2px;fill:var(--accent)}
@@ -236,7 +236,7 @@
   .gphoto{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);background:#0e1622}
   .gphoto.tall{grid-row:span 2}
   .gphoto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1);filter:saturate(1.05)}
-  .gphoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,12,20,.65));opacity:0;transition:opacity .4s}
+  .gphoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,12,14,.65));opacity:0;transition:opacity .4s}
   .gphoto:hover img{transform:scale(1.08)}
   .gphoto:hover::after{opacity:1}
   .gphoto .cap{position:absolute;left:16px;bottom:14px;z-index:2;font-weight:600;font-size:.95rem;opacity:0;transform:translateY(8px);transition:all .4s}
@@ -254,10 +254,10 @@
 
   /* ---------- CTA / CONTACT ---------- */
   .cta{position:relative;overflow:hidden;border-radius:28px;margin:0 24px;
-    background:linear-gradient(135deg,#1a2530,#0d141b);border:1px solid var(--line)}
+    background:linear-gradient(135deg,#1c1d20,#0e0f11);border:1px solid var(--line)}
   .cta-bg{position:absolute;inset:-15% 0;will-change:transform;
     background:
-      linear-gradient(135deg,rgba(10,18,30,.93),rgba(12,22,36,.86)),
+      linear-gradient(135deg,rgba(14,15,17,.93),rgba(16,17,19,.86)),
       radial-gradient(700px 400px at 20% 20%,var(--accent-glow),transparent 60%),
       url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;}
   .cta-inner{position:relative;z-index:2;padding:80px 40px;text-align:center;max-width:760px;margin:0 auto}
@@ -276,17 +276,33 @@
   .cta .owner{color:rgba(243,247,252,.82)}
   .cta .owner b{color:#f3f7fc}
 
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:.85fr 1fr;gap:48px;align-items:center}
+  .about-photo{position:relative}
+  .about-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 22%;
+    border-radius:var(--radius);display:block;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .about-badge{position:absolute;left:18px;bottom:18px;display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:700;
+    font-size:.85rem;padding:9px 16px;border-radius:999px;box-shadow:0 10px 24px var(--accent-glow)}
+  .about-copy h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin:14px 0 16px}
+  .about-copy p{color:var(--muted);margin-bottom:14px;font-size:1.02rem}
+  .about-points{list-style:none;margin:18px 0 26px;display:grid;gap:12px}
+  .about-points li{display:flex;gap:12px;align-items:flex-start;font-weight:500;color:var(--ink)}
+  .about-points li svg{width:22px;height:22px;flex:none;fill:var(--accent);margin-top:2px}
+  .about-cta{display:flex;gap:14px;flex-wrap:wrap}
+  @media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:30px}}
+
   /* ---------- INSURANCE / CLAIMS ---------- */
-  .warn{display:flex;gap:20px;align-items:flex-start;background:linear-gradient(135deg,rgba(47,123,246,.14),rgba(47,123,246,.04));
-    border:1px solid rgba(47,123,246,.35);border-left:4px solid var(--accent);border-radius:var(--radius);padding:26px 28px;margin-bottom:40px}
-  .warn .wic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(47,123,246,.18)}
+  .warn{display:flex;gap:20px;align-items:flex-start;background:linear-gradient(135deg,rgba(209,43,43,.14),rgba(209,43,43,.04));
+    border:1px solid rgba(209,43,43,.35);border-left:4px solid var(--accent);border-radius:var(--radius);padding:26px 28px;margin-bottom:40px}
+  .warn .wic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(209,43,43,.18)}
   .warn .wic svg{width:24px;height:24px;stroke:var(--accent-2);fill:none;stroke-width:1.9}
   .warn h3{font-size:1.2rem;margin-bottom:6px}
   .warn p{color:var(--muted);font-size:.98rem}
   .warn .code{color:var(--accent);font-weight:700}
   .rw{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
   .rw .col{border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;background:var(--panel)}
-  .rw .col.right{border-color:rgba(47,123,246,.4);background:linear-gradient(180deg,rgba(47,123,246,.10),transparent)}
+  .rw .col.right{border-color:rgba(209,43,43,.4);background:linear-gradient(180deg,rgba(209,43,43,.10),transparent)}
   .rw .col.wrong{opacity:.92}
   .rw h4{display:flex;align-items:center;gap:10px;font-family:'Sora';font-size:1.15rem;margin-bottom:14px}
   .rw .badge{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.9rem;flex:none}
@@ -301,8 +317,8 @@
   /* ---------- FEATURE BADGES ---------- */
   .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:42px}
   .feat{text-align:center;padding:26px 18px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s}
-  .feat:hover{transform:translateY(-5px);border-color:rgba(47,123,246,.4)}
-  .feat .fic{width:50px;height:50px;margin:0 auto 14px;border-radius:14px;display:grid;place-items:center;background:rgba(47,123,246,.14);border:1px solid rgba(47,123,246,.28)}
+  .feat:hover{transform:translateY(-5px);border-color:rgba(209,43,43,.4)}
+  .feat .fic{width:50px;height:50px;margin:0 auto 14px;border-radius:14px;display:grid;place-items:center;background:rgba(209,43,43,.14);border:1px solid rgba(209,43,43,.28)}
   .feat .fic svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8}
   .feat b{display:block;font-family:'Sora';font-size:1rem;margin-bottom:6px}
   .feat span{color:var(--muted);font-size:.88rem}
@@ -379,7 +395,7 @@
     pointer-events:none;transition:opacity .28s ease,transform .28s ease}
   .ai-panel.open{opacity:1;transform:none;pointer-events:auto}
   .ai-head{display:flex;align-items:center;gap:12px;padding:16px 18px;
-    background:linear-gradient(135deg,rgba(94,168,255,.16),rgba(47,123,246,.10));border-bottom:1px solid var(--line)}
+    background:linear-gradient(135deg,rgba(233,75,75,.16),rgba(209,43,43,.10));border-bottom:1px solid var(--line)}
   .ai-head .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
     background:linear-gradient(135deg,var(--accent-2),var(--accent))}
   .ai-head .av svg{width:22px;height:22px}
@@ -414,7 +430,7 @@
   /* triage view */
   .drop{border:2px dashed var(--line);border-radius:14px;padding:26px 18px;text-align:center;cursor:pointer;
     color:var(--muted);transition:border-color .2s,background .2s}
-  .drop:hover,.drop.drag{border-color:var(--accent);background:rgba(47,123,246,.06);color:var(--ink)}
+  .drop:hover,.drop.drag{border-color:var(--accent);background:rgba(209,43,43,.06);color:var(--ink)}
   .drop svg{width:34px;height:34px;opacity:.8;margin-bottom:8px}
   .drop b{color:var(--accent)}
   .drop small{display:block;margin-top:6px;font-size:.74rem}
@@ -444,16 +460,16 @@
     <a href="#top" class="brand" aria-label="Rooftoprob Roofing &amp; Construction — home">
       <svg class="brand-logo" viewBox="0 0 580 120" role="img" aria-label="Rooftoprob Roofing &amp; Construction" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="rbBlue" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#5ea8ff"/>
-            <stop offset="1" stop-color="#2f7bf6"/>
+          <linearGradient id="rbRed" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e94b4b"/>
+            <stop offset="1" stop-color="#d12b2b"/>
           </linearGradient>
         </defs>
         <!-- roof + house mark -->
         <path d="M24 66 L66 24 L108 66 L108 104 L24 104 Z" fill="currentColor"/>
-        <path d="M14 70 L66 18 L118 70" fill="none" stroke="url(#rbBlue)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M66 17 L38 5 L49 23 Z" fill="#5ea8ff"/>
-        <g fill="#2f7bf6">
+        <path d="M14 70 L66 18 L118 70" fill="none" stroke="url(#rbRed)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M66 17 L38 5 L49 23 Z" fill="#e94b4b"/>
+        <g fill="#d12b2b">
           <rect x="54" y="52" width="10" height="10" rx="1.5"/>
           <rect x="68" y="52" width="10" height="10" rx="1.5"/>
           <rect x="54" y="66" width="10" height="10" rx="1.5"/>
@@ -461,13 +477,14 @@
         </g>
         <!-- wordmark -->
         <text x="148" y="72" font-family="Sora, 'Segoe UI', sans-serif" font-weight="800" font-size="56" letter-spacing="-1">
-          <tspan fill="currentColor">ROOFTOP</tspan><tspan fill="url(#rbBlue)">ROB</tspan>
+          <tspan fill="currentColor">ROOFTOP</tspan><tspan fill="url(#rbRed)">ROB</tspan>
         </text>
-        <line x1="150" y1="94" x2="170" y2="94" stroke="#2f7bf6" stroke-width="3" stroke-linecap="round"/>
+        <line x1="150" y1="94" x2="170" y2="94" stroke="#d12b2b" stroke-width="3" stroke-linecap="round"/>
         <text x="178" y="99" font-family="Sora, 'Segoe UI', sans-serif" font-weight="700" font-size="14" letter-spacing="5.5" fill="currentColor" opacity=".6">ROOFING &amp; CONSTRUCTION</text>
       </svg>
     </a>
     <nav class="nav-links" id="navlinks">
+      <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#claims">Claims</a>
       <a href="#process">Process</a>
@@ -571,6 +588,31 @@
       <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Drone tech &amp; precise measurements on every inspection.</li>
       <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> We handle the insurance paperwork so you don't have to.</li>
     </ul>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="sec" id="about">
+  <div class="wrap about-grid reveal">
+    <div class="about-photo">
+      <img src="rob-headshot.jpg" alt="Robert Mills — owner of Rooftoprob Roofing &amp; Construction" loading="lazy" />
+      <span class="about-badge"><svg viewBox="0 0 24 24" width="14" height="14" fill="#fff"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Robert Mills · Owner</span>
+    </div>
+    <div class="about-copy">
+      <span class="tag">About Rooftoprob</span>
+      <h2>Meet Rob — the roofer who answers his own phone.</h2>
+      <p>Rooftoprob was built by Robert Mills on a simple idea: treat every Houston home like it's his own. No call centers, no high-pressure sales — just honest, photo-documented work from a craftsman who shows up when he says he will.</p>
+      <p>From storm and hail damage to full replacements, Rob walks you through every step — including the insurance claim — so you always know exactly what's happening and why. It's roofing done the right way, the first time.</p>
+      <ul class="about-points">
+        <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Fully licensed &amp; insured — proudly serving Houston &amp; surrounding areas.</li>
+        <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Free, no-pressure inspections with honest, documented assessments.</li>
+        <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> We handle the hard part — insurance claims — so you get peace of mind.</li>
+      </ul>
+      <div class="about-cta">
+        <a href="#contact" class="btn">Get Your Free Inspection</a>
+        <a href="tel:+13468264424" class="btn ghost">&#9742; (346) 826-4424</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -759,16 +801,16 @@
       <a href="#top" class="brand" aria-label="Rooftoprob Roofing &amp; Construction — home">
         <svg class="brand-logo" viewBox="0 0 580 120" role="img" aria-label="Rooftoprob Roofing &amp; Construction" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="rbBlue" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#5ea8ff"/>
-            <stop offset="1" stop-color="#2f7bf6"/>
+          <linearGradient id="rbRed" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e94b4b"/>
+            <stop offset="1" stop-color="#d12b2b"/>
           </linearGradient>
         </defs>
         <!-- roof + house mark -->
         <path d="M24 66 L66 24 L108 66 L108 104 L24 104 Z" fill="currentColor"/>
-        <path d="M14 70 L66 18 L118 70" fill="none" stroke="url(#rbBlue)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M66 17 L38 5 L49 23 Z" fill="#5ea8ff"/>
-        <g fill="#2f7bf6">
+        <path d="M14 70 L66 18 L118 70" fill="none" stroke="url(#rbRed)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M66 17 L38 5 L49 23 Z" fill="#e94b4b"/>
+        <g fill="#d12b2b">
           <rect x="54" y="52" width="10" height="10" rx="1.5"/>
           <rect x="68" y="52" width="10" height="10" rx="1.5"/>
           <rect x="54" y="66" width="10" height="10" rx="1.5"/>
@@ -776,9 +818,9 @@
         </g>
         <!-- wordmark -->
         <text x="148" y="72" font-family="Sora, 'Segoe UI', sans-serif" font-weight="800" font-size="56" letter-spacing="-1">
-          <tspan fill="currentColor">ROOFTOP</tspan><tspan fill="url(#rbBlue)">ROB</tspan>
+          <tspan fill="currentColor">ROOFTOP</tspan><tspan fill="url(#rbRed)">ROB</tspan>
         </text>
-        <line x1="150" y1="94" x2="170" y2="94" stroke="#2f7bf6" stroke-width="3" stroke-linecap="round"/>
+        <line x1="150" y1="94" x2="170" y2="94" stroke="#d12b2b" stroke-width="3" stroke-linecap="round"/>
         <text x="178" y="99" font-family="Sora, 'Segoe UI', sans-serif" font-weight="700" font-size="14" letter-spacing="5.5" fill="currentColor" opacity=".6">ROOFING &amp; CONSTRUCTION</text>
       </svg>
       </a>
@@ -928,7 +970,7 @@
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
         ctx.fillStyle = `rgba(120,170,255,${p.a})`;
-        ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(94,168,255,.6)';
+        ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(233,75,75,.6)';
         ctx.fill();
       }
       requestAnimationFrame(tick);
