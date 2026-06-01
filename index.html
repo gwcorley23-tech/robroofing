@@ -1315,8 +1315,10 @@
     function loadFile(file){
       if(!file.type.startsWith('image/')){ return; }
       const reader = new FileReader();
-      reader.onload = () => {
-        dataUrl = reader.result;
+      reader.onload = async () => {
+        // Shrink big phone photos before upload — Vercel caps request bodies at
+        // ~4.5MB, and smaller images upload + analyze much faster.
+        dataUrl = await downscaleImage(reader.result, 1600, 0.82);
         previewWrap.innerHTML = '';
         const img = document.createElement('img');
         img.className = 'preview-img'; img.src = dataUrl;
@@ -1328,6 +1330,30 @@
         resultWrap.innerHTML = '';
       };
       reader.readAsDataURL(file);
+    }
+
+    // Resize to maxEdge (longest side) and re-encode as JPEG. Also normalizes
+    // HEIC/PNG to JPEG. Falls back to the original data URL on any failure.
+    function downscaleImage(src, maxEdge, quality){
+      return new Promise(resolve => {
+        try{
+          const img = new Image();
+          img.onload = () => {
+            try{
+              let w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+              if(!w || !h){ return resolve(src); }
+              const scale = Math.min(1, maxEdge / Math.max(w, h));
+              w = Math.round(w * scale); h = Math.round(h * scale);
+              const c = document.createElement('canvas'); c.width = w; c.height = h;
+              c.getContext('2d').drawImage(img, 0, 0, w, h);
+              const out = c.toDataURL('image/jpeg', quality);
+              resolve(out && out.length > 30 ? out : src);
+            }catch(e){ resolve(src); }
+          };
+          img.onerror = () => resolve(src);
+          img.src = src;
+        }catch(e){ resolve(src); }
+      });
     }
 
     runBtn.addEventListener('click', async () => {
