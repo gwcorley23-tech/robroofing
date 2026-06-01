@@ -315,12 +315,13 @@
   .gallery{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:16px}
   .gphoto{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid var(--line);background:#0e1622}
   .gphoto.tall{grid-row:span 2}
+  .gphoto.wide{grid-column:span 2}
   .gphoto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1);filter:saturate(1.05)}
-  .gphoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,12,14,.65));opacity:0;transition:opacity .4s}
+  .gphoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,12,14,.72));opacity:.7;transition:opacity .4s}
   .gphoto:hover img{transform:scale(1.08)}
   .gphoto:hover::after{opacity:1}
-  .gphoto .cap{position:absolute;left:16px;bottom:14px;z-index:2;font-weight:600;font-size:.95rem;opacity:0;transform:translateY(8px);transition:all .4s}
-  .gphoto:hover .cap{opacity:1;transform:none}
+  .gphoto .cap{position:absolute;left:16px;bottom:14px;z-index:2;font-weight:700;font-size:.95rem;color:#fff;opacity:1;transform:none;transition:all .4s;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+  .gphoto .cap small{display:block;font-weight:500;font-size:.78rem;opacity:.85}
 
   /* ---------- TESTIMONIALS ---------- */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -470,6 +471,7 @@
     .grid,.quotes,.steps{grid-template-columns:1fr}
     .gallery{grid-template-columns:1fr;grid-auto-rows:220px}
     .gphoto.tall{grid-row:span 1}
+    .gphoto.wide{grid-column:span 1}
     .rw{grid-template-columns:1fr}
     .feats{grid-template-columns:1fr 1fr}
     .sec{padding:80px 0}
@@ -593,7 +595,7 @@
       <a href="#claims">Claims</a>
       <a href="#process">Process</a>
       <a href="#areas">Service Areas</a>
-      <a href="#work">Our Work</a>
+      <a href="#work">Gallery</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
       <a href="#contact" class="btn">Free Inspection</a>
@@ -807,14 +809,11 @@
       <p>A look at the craftsmanship — clean lines, quality materials, and homes protected for years to come.</p>
     </div>
     <div class="gallery">
-      <a class="gphoto tall reveal" href="#contact"><img loading="lazy" src="https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=900&q=80" alt="Roofers installing new shingles"><span class="cap">Full Shingle Replacement</span></a>
-      <a class="gphoto reveal d1" href="#contact"><img loading="lazy" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=900&q=80" alt="Close-up of new roof shingles"><span class="cap">Premium Materials</span></a>
-      <a class="gphoto reveal d2" href="#contact"><img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80" alt="Modern home exterior with new roof"><span class="cap">Curb Appeal Restored</span></a>
-      <a class="gphoto reveal" href="#contact"><img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80" alt="Residential home roofline"><span class="cap">Residential Roofing</span></a>
-      <a class="gphoto tall reveal d1" href="#contact"><img loading="lazy" src="https://images.unsplash.com/photo-1635424710928-0544e8512eae?auto=format&fit=crop&w=900&q=80" alt="Roofer working on a roof"><span class="cap">Skilled Craftsmanship</span></a>
-      <a class="gphoto reveal d2" href="#contact"><img loading="lazy" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=80" alt="Finished home with quality roof"><span class="cap">Built to Last</span></a>
+      <a class="gphoto wide reveal" href="#contact"><img loading="lazy" src="work-metal-estate.jpg" alt="Standing-seam metal roof on a Texas luxury estate by Rooftoprob Roofing"><span class="cap">Standing-Seam Metal Roof<small>Luxury estate · drone-documented</small></span></a>
+      <a class="gphoto reveal d1" href="#contact"><img loading="lazy" src="work-brick-charcoal.jpg" alt="Charcoal architectural shingle replacement on a Houston brick home"><span class="cap">Architectural Shingles<small>Houston, TX</small></span></a>
+      <a class="gphoto wide reveal d1" href="#contact"><img loading="lazy" src="work-aerial-pool.jpg" alt="Aerial view of a full shingle roof replacement on a Texas home with pool"><span class="cap">Full Shingle Replacement<small>Aerial view</small></span></a>
+      <a class="gphoto reveal d2" href="#contact"><img loading="lazy" src="work-tan-charcoal.jpg" alt="Completed charcoal shingle roof replacement on a Houston two-story home"><span class="cap">Roof Replacement<small>Houston, TX</small></span></a>
     </div>
-    <p style="color:var(--muted);font-size:.82rem;margin-top:22px;text-align:center" class="reveal">* Stock photos shown — swap in Rooftoprob's real job photos here.</p>
   </div>
 </section>
 
