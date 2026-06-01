@@ -486,7 +486,15 @@
     .nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:rgba(255,255,255,.98);backdrop-filter:blur(14px);padding:24px;gap:18px;border-bottom:1px solid var(--line)}
     .nav-links.open a:not(.btn){color:var(--ink)}
   }
+  /* Freeze all decorative motion (manual ?still=1 switch or reduced-motion) */
+  html.still *,html.still *::before,html.still *::after{
+    animation:none !important;transition:none !important;scroll-behavior:auto !important;
+    will-change:auto !important;
+  }
+  html.still .reveal{opacity:1 !important;transform:none !important;filter:none !important}
+  html.still .hero-spark{display:none}
   @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important}
     .reveal{opacity:1;transform:none;transition:none}
     *{scroll-behavior:auto}
   }
@@ -551,6 +559,11 @@
   .triage-note{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;
     padding:10px 12px;color:var(--ink);font:400 .88rem/1.4 'Inter',sans-serif;resize:vertical;min-height:54px}
   .triage-note:focus{outline:none;border-color:var(--accent)}
+  .claim-field{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--ink);font:400 .86rem/1.3 'Inter',sans-serif;margin-top:8px}
+  .claim-field:focus{outline:none;border-color:var(--accent)}
+  .claim-btn{width:100%;align-items:center;justify-content:center;gap:8px;margin-top:8px;background:transparent;color:var(--accent);border:1.5px solid var(--accent);padding:12px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.9rem}
+  .claim-btn:hover{background:rgba(209,43,43,.07)}
+  .claim-btn:disabled{opacity:.6;cursor:default}
   .btn-block{width:100%;justify-content:center;text-align:center}
   .result{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:.88rem}
   .result h5{margin:0 0 6px;font:700 .95rem 'Sora',sans-serif;color:var(--ink)}
@@ -564,6 +577,21 @@
   .ai-note{font-size:.74rem;color:var(--muted);text-align:center;padding:0 8px 4px}
 </style>
 <script>window.ROOFTOPROB_API_BASE = "https://robroofing-backend.vercel.app";</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script>
+/* Freeze switch: ?still=1 in the URL, a saved preference, or the OS
+   "reduce motion" setting halts all decorative animation. Runs before
+   paint so animations never start. Also speeds up automated previews. */
+(function(){
+  try{
+    var url = /[?&]still=1\b/.test(location.search) || location.hash === '#still';
+    var saved = false; try{ saved = localStorage.getItem('rrStill') === '1'; }catch(e){}
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.__RR_STILL__ = !!(url || saved || rm);
+    if(window.__RR_STILL__) document.documentElement.classList.add('still');
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
 
@@ -1100,7 +1128,10 @@
       </div>
       <div id="triagePreview"></div>
       <textarea class="triage-note" id="triageNote" placeholder="Anything we should know? (optional — e.g. 'leak after last week's hail storm')"></textarea>
+      <input class="claim-field" id="claimOwner" placeholder="Your name (for the report) — optional" style="display:none">
+      <input class="claim-field" id="claimAddress" placeholder="Property address (for the report) — optional" style="display:none">
       <button class="btn primary btn-block ai-fab-inline" id="triageRun" style="display:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;padding:13px;border-radius:10px;font-weight:600;cursor:pointer">Analyze my roof</button>
+      <button class="claim-btn" id="claimRun" style="display:none">&#128196; Generate Claim Report (PDF)</button>
       <div id="triageResult"></div>
     </div>
   </div>
@@ -1120,6 +1151,7 @@
   const head = document.getElementById('head');
   const onScroll = () => {
     head.classList.toggle('scrolled', window.scrollY > 20);
+    if(window.__RR_STILL__) return; // skip parallax work when frozen
     // parallax
     const y = window.scrollY;
     document.querySelectorAll('[data-parallax]').forEach(el => {
@@ -1146,9 +1178,8 @@
 
   // hero floating embers / dust
   (function(){
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const cv = document.getElementById('heroSpark');
-    if(!cv || reduce) return;
+    if(!cv || window.__RR_STILL__) return;
     const ctx = cv.getContext('2d');
     let w, h, parts;
     const COUNT = 46;
@@ -1169,7 +1200,7 @@
         if(p.y < -6){ p.y = h+6; p.x = rand(0,w); }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(120,170,255,${p.a})`;
+        ctx.fillStyle = `rgba(255,224,210,${p.a})`;
         ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(233,75,75,.6)';
         ctx.fill();
       }
@@ -1270,6 +1301,9 @@
     const noteEl = document.getElementById('triageNote');
     const runBtn = document.getElementById('triageRun');
     const resultWrap = document.getElementById('triageResult');
+    const claimOwner = document.getElementById('claimOwner');
+    const claimAddress = document.getElementById('claimAddress');
+    const claimBtn = document.getElementById('claimRun');
     let dataUrl = null;
 
     drop.addEventListener('click', () => fileInput.click());
@@ -1288,6 +1322,9 @@
         img.className = 'preview-img'; img.src = dataUrl;
         previewWrap.appendChild(img);
         runBtn.style.display = 'flex';
+        claimOwner.style.display = 'block';
+        claimAddress.style.display = 'block';
+        claimBtn.style.display = 'flex';
         resultWrap.innerHTML = '';
       };
       reader.readAsDataURL(file);
@@ -1333,6 +1370,129 @@
         '</div>';
     }
     function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+    /* ---------- AI CLAIM REPORT (PDF) ---------- */
+    claimBtn && claimBtn.addEventListener('click', async () => {
+      if(!dataUrl) return;
+      if(!API_BASE){
+        resultWrap.innerHTML = '<div class="result"><p style="margin:0;color:var(--muted)">Live report isn\'t connected yet — send your photo to Rob at <b style="color:var(--accent-2)">(346) 826-4424</b> for a free inspection.</p></div>';
+        return;
+      }
+      if(!(window.jspdf && window.jspdf.jsPDF)){
+        resultWrap.innerHTML = '<div class="result"><p style="margin:0;color:var(--muted)">Report tool is still loading — give it a second and try again.</p></div>';
+        return;
+      }
+      claimBtn.disabled = true; const orig = claimBtn.innerHTML; claimBtn.innerHTML = 'Generating your report…';
+      resultWrap.innerHTML = '<div class="result"><p style="margin:0;color:var(--muted)">Inspecting your photo and building a branded PDF report…</p></div>';
+      try{
+        const r = await fetch(API_BASE.replace(/\/$/,'') + '/api/claim', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ image: dataUrl, notes: noteEl.value.trim(), owner: claimOwner.value.trim(), address: claimAddress.value.trim() })
+        });
+        const data = await r.json();
+        if(!data.report) throw new Error('no report');
+        await buildClaimPdf(data.report, dataUrl, claimOwner.value.trim(), claimAddress.value.trim());
+        resultWrap.innerHTML = '<div class="result"><h5>✅ Your report is downloading</h5><p style="margin:0;color:var(--muted)">This is a preliminary, AI-assisted read from your photo — perfect for starting an insurance conversation. For a documented, on-site inspection (free), call <b style="color:var(--accent-2)">(346) 826-4424</b>.</p></div>';
+      }catch(err){
+        resultWrap.innerHTML = '<div class="result"><p style="margin:0;color:var(--muted)">Couldn\'t generate the report right now. Call (346) 826-4424 for a free inspection.</p></div>';
+      }finally{
+        claimBtn.disabled = false; claimBtn.innerHTML = orig;
+      }
+    });
+
+    function capz(s){ s = String(s||''); return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+    function imgDims(src){ return new Promise(res => { const i = new Image(); i.onload = () => res({w:i.naturalWidth||4, h:i.naturalHeight||3}); i.onerror = () => res({w:4,h:3}); i.src = src; }); }
+
+    async function buildClaimPdf(report, imgDataUrl, owner, address){
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit:'pt', format:'letter' });
+      const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight();
+      const M = 48, RED = [209,43,43], DARK = [24,25,28], GRAY = [120,128,138], LINE = [225,228,232];
+      let y = 0;
+
+      function header(){
+        doc.setFillColor(...DARK); doc.rect(0,0,W,7,'F');
+        doc.setFillColor(...RED); doc.rect(0,7,W,60,'F');
+        doc.setTextColor(255,255,255);
+        doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.text('ROOFTOPROB', M, 40);
+        doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.text('ROOFING & CONSTRUCTION', M, 53);
+        doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.text('Preliminary Roof Report', W-M, 35, {align:'right'});
+        doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.text('(346) 826-4424  ·  Houston, TX', W-M, 49, {align:'right'});
+        y = 92;
+      }
+      function footer(n){
+        const fy = H - 28;
+        doc.setDrawColor(...LINE); doc.setLineWidth(0.7); doc.line(M, fy-10, W-M, fy-10);
+        doc.setTextColor(...GRAY); doc.setFont('helvetica','normal'); doc.setFontSize(7.3);
+        doc.text('Rooftoprob Roofing & Construction · Licensed & Insured · (346) 826-4424 · rooftoprob2.0@gmail.com', M, fy);
+        doc.text(String(n), W-M, fy, {align:'right'});
+      }
+      function ensure(need){ if(y+need > H-58){ footer(doc.internal.getNumberOfPages()); doc.addPage(); header(); } }
+      function heading(t){ ensure(34); doc.setTextColor(...RED); doc.setFont('helvetica','bold'); doc.setFontSize(11.5); doc.text(t.toUpperCase(), M, y); y+=6; doc.setDrawColor(...RED); doc.setLineWidth(1.3); doc.line(M, y, M+42, y); y+=15; doc.setTextColor(...DARK); }
+      function para(t, size, color, gap){ size=size||9.5; color=color||DARK; gap=(gap==null?5:gap); doc.setFont('helvetica','normal'); doc.setFontSize(size); doc.setTextColor(...color); doc.splitTextToSize(String(t), W-2*M).forEach(l => { ensure(size+3); doc.text(l, M, y); y+=size+3; }); y+=gap; }
+      function bullet(t, size){ size=size||9.5; doc.setFont('helvetica','normal'); doc.setFontSize(size); const lines = doc.splitTextToSize(String(t), W-2*M-14); lines.forEach((l,i) => { ensure(size+3); if(i===0){ doc.setTextColor(...RED); doc.text('•', M, y); } doc.setTextColor(...DARK); doc.text(l, M+14, y); y+=size+3; }); y+=2; }
+
+      header();
+      doc.setTextColor(...DARK); doc.setFont('helvetica','bold'); doc.setFontSize(15);
+      doc.splitTextToSize('Preliminary Roof Inspection & Insurance Claim Report', W-2*M).forEach(l => { doc.text(l, M, y); y+=18; }); y+=6;
+
+      const today = new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+      doc.setFontSize(9.5); doc.setTextColor(...DARK);
+      [['Prepared for', owner||'Homeowner'],['Property', address||'(not provided)'],['Date', today],['Confidence', capz(report.confidence||'—')]].forEach(([k,v]) => {
+        doc.setFont('helvetica','bold'); doc.text(k+':', M, y); doc.setFont('helvetica','normal'); doc.text(' '+v, M+72, y); y+=14;
+      });
+      y+=6;
+
+      const sev = capz(report.overall_severity||'—');
+      doc.setFont('helvetica','bold'); doc.setFontSize(9);
+      const label = 'OVERALL SEVERITY:  ' + sev.toUpperCase();
+      const bw = doc.getTextWidth(label) + 18;
+      doc.setFillColor(...RED); doc.roundedRect(M, y, bw, 19, 4, 4, 'F');
+      doc.setTextColor(255,255,255); doc.text(label, M+9, y+13); y+=33;
+
+      try{
+        const d = await imgDims(imgDataUrl);
+        const iw = Math.min(250, W-2*M), ih = iw*(d.h/d.w);
+        ensure(ih+18);
+        const fmt = /^data:image\/png/i.test(imgDataUrl) ? 'PNG' : 'JPEG';
+        doc.addImage(imgDataUrl, fmt, M, y, iw, ih, undefined, 'FAST');
+        doc.setDrawColor(...LINE); doc.setLineWidth(0.7); doc.rect(M, y, iw, ih);
+        y+=ih+5;
+        doc.setTextColor(...GRAY); doc.setFont('helvetica','italic'); doc.setFontSize(7.5); doc.text('Homeowner-submitted photo', M, y); y+=15;
+      }catch(e){}
+
+      if(report.homeowner_summary){ heading('Summary'); para(report.homeowner_summary); }
+
+      if(Array.isArray(report.findings) && report.findings.length){
+        heading('Observed Findings');
+        report.findings.forEach(f => {
+          ensure(42);
+          doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...DARK);
+          doc.text((f.area||'Area') + (f.severity ? ('  —  '+capz(f.severity)) : ''), M, y); y+=13;
+          if(f.observation) para('Observed: '+f.observation, 9, GRAY, 1);
+          if(f.recommendation) para('Recommended: '+f.recommendation, 9, DARK, 6);
+        });
+      }
+
+      if(Array.isArray(report.recommended_scope) && report.recommended_scope.length){
+        heading('Recommended Scope to Verify On-Site');
+        report.recommended_scope.forEach(s => bullet(s)); y+=2;
+      }
+
+      if(report.claim_narrative){ heading('Insurance Claim Narrative'); para(report.claim_narrative, 9.5, DARK, 6); }
+
+      if(Array.isArray(report.next_steps) && report.next_steps.length){
+        heading('Next Steps'); report.next_steps.forEach(s => bullet(s));
+      }
+
+      ensure(80); y+=6;
+      doc.setDrawColor(...LINE); doc.setLineWidth(0.7); doc.line(M, y, W-M, y); y+=12;
+      para('This preliminary assessment is generated with AI assistance based solely on the photo(s) provided and is not a substitute for an on-site professional inspection, a final scope of work, or legal or insurance advice. No price or insurance outcome is guaranteed. Rooftoprob never waives, rebates, or absorbs insurance deductibles (prohibited under Texas law). Texas Insurance Code §542 sets deadlines for insurers to acknowledge and pay valid claims. Contact your adjuster and Rooftoprob for a documented, free on-site inspection.', 7.8, GRAY, 0);
+
+      footer(doc.internal.getNumberOfPages());
+      const safe = (owner||'').replace(/[^a-z0-9]+/gi,'_').replace(/^_|_$/g,'');
+      doc.save('Rooftoprob-Roof-Report' + (safe ? '-'+safe : '') + '.pdf');
+    }
   })();
 </script>
 </body>
