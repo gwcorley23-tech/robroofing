@@ -1010,12 +1010,18 @@
     const chatSend = document.getElementById('chatSend');
     const history = []; // {role, content}
 
+    const chatScroller = document.querySelector('.ai-body');
+    function scrollChatDown(){
+      if(!chatScroller) return;
+      // wait for the new bubble to render, then pin to the bottom
+      requestAnimationFrame(() => { chatScroller.scrollTop = chatScroller.scrollHeight; });
+    }
     function bubble(text, who){
       const d = document.createElement('div');
       d.className = 'msg ' + who;
       d.textContent = text;
       chatLog.appendChild(d);
-      chatLog.parentElement.scrollTop = chatLog.parentElement.scrollHeight;
+      scrollChatDown();
       return d;
     }
     function greet(){
