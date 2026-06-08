@@ -6,6 +6,9 @@
 <title>Rooftoprob Roofing &amp; Construction | Houston, TX</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2316181d'/%3E%3Cpath fill='%23d12b2b' d='M24 7 43.5 24H37.8L24 12.4 10.2 24H4.5z'/%3E%3Cpath fill='%23fff' d='M11.5 25.6 24 14.2 36.5 25.6V41H29.2V31.2H18.8V41H11.5z'/%3E%3C/svg%3E" />
 <meta name="description" content="Rooftoprob Roofing & Construction — fully licensed & insured roofing in Houston, TX & surrounding areas. Free drone roof inspections, repairs, replacements, storm & hail damage, and insurance-claim help. Your home & my passion." />
+<meta name="theme-color" content="#d12b2b" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
 <link rel="canonical" href="https://www.rooftoprob.com/" />
 <meta name="keywords" content="Houston roofing, roof replacement Houston, roof repair, storm damage roof, hail damage, roof inspection, insurance claim roofing, Katy, The Woodlands, Sugar Land, Cypress" />
 <meta name="geo.region" content="US-TX" />
@@ -393,6 +396,28 @@
   .about-cta{display:flex;gap:14px;flex-wrap:wrap}
   @media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:30px}}
 
+  /* ---------- LEAD FORM ---------- */
+  .lead-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:620px;margin:8px auto 6px;text-align:left}
+  .lead-form .full{grid-column:1 / -1}
+  .lead-form input,.lead-form textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px 14px;color:#f3f7fc;font:400 .92rem/1.4 'Inter',sans-serif}
+  .lead-form input::placeholder,.lead-form textarea::placeholder{color:rgba(243,247,252,.55)}
+  .lead-form input:focus,.lead-form textarea:focus{outline:none;border-color:var(--accent-2)}
+  .lead-form textarea{min-height:70px;resize:vertical}
+  .lead-form .btn{justify-content:center}
+  .lead-msg{grid-column:1 / -1;font-size:.9rem;color:#f3f7fc;text-align:center;min-height:1px}
+  /* ---------- EXIT-INTENT POPUP ---------- */
+  .exitpop{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(10,12,16,.72);backdrop-filter:blur(4px);padding:20px}
+  .exitpop.show{display:flex}
+  .exitpop-card{position:relative;max-width:440px;width:100%;background:linear-gradient(160deg,#1c1d20,#101113);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:34px 30px;box-shadow:0 30px 80px rgba(0,0,0,.55);text-align:center}
+  .exitpop-card h3{color:#f3f7fc;font-size:1.5rem;margin-bottom:8px}
+  .exitpop-card p{color:rgba(243,247,252,.8);font-size:.96rem;margin-bottom:18px}
+  .exitpop-card .x{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(243,247,252,.6);font-size:1.5rem;cursor:pointer;line-height:1}
+  .exitpop-card form{display:grid;gap:10px}
+  .exitpop-card input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px 14px;color:#f3f7fc;font:400 .92rem 'Inter',sans-serif}
+  .exitpop-card input:focus{outline:none;border-color:var(--accent-2)}
+  .exitpop-card .btn{justify-content:center}
+  .exitpop-card small{display:block;color:rgba(243,247,252,.55);font-size:.76rem;margin-top:10px}
+
   /* ---------- FAQ ---------- */
   .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
   .faq-item{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
@@ -590,6 +615,76 @@
     window.__RR_STILL__ = !!(url || saved || rm);
     if(window.__RR_STILL__) document.documentElement.classList.add('still');
   }catch(e){}
+})();
+</script>
+
+<!-- ===================== INTEGRATIONS CONFIG =====================
+     Paste your keys/IDs below to ACTIVATE each integration. Until a value
+     is filled in, that integration stays OFF and the site works normally.
+     - GA_ID:          Google Analytics 4 Measurement ID (G-XXXXXXXXXX)
+     - META_PIXEL_ID:  Facebook/Meta Pixel ID (for ad retargeting)
+     - WEB3FORMS_KEY:  free key from web3forms.com — powers the contact form,
+                       exit popup, AND routes AI-chat leads to Rob's inbox
+     - BOOKING_URL:    Calendly/Cal.com link (adds a "Book inspection" button)
+     - GBP_REVIEW_URL: Google "write a review" link (wires the review buttons)
+================================================================== -->
+<script>
+window.RRP_CONFIG = {
+  GA_ID: "",
+  META_PIXEL_ID: "",
+  WEB3FORMS_KEY: "",
+  BOOKING_URL: "",
+  GBP_REVIEW_URL: ""
+};
+(function(){
+  var c = window.RRP_CONFIG || {};
+  // Google Analytics 4
+  if(c.GA_ID){
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+c.GA_ID; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments)};
+    gtag('js', new Date()); gtag('config', c.GA_ID);
+  }
+  // Meta (Facebook) Pixel
+  if(c.META_PIXEL_ID){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,
+    'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', c.META_PIXEL_ID); fbq('track','PageView');
+  }
+  // Shared lead-sender → emails Rob via Web3Forms (if configured) + fires analytics
+  window.RRP_sendLead = async function(fields){
+    fields = fields || {};
+    try{ if(window.gtag) gtag('event','generate_lead',{source:fields._source||'site'}); }catch(e){}
+    try{ if(window.fbq) fbq('track','Lead'); }catch(e){}
+    if(!c.WEB3FORMS_KEY) return { ok:false, reason:'not_configured' };
+    try{
+      var body = Object.assign({
+        access_key: c.WEB3FORMS_KEY,
+        from_name: 'Rooftoprob Website',
+        subject: fields.subject || 'New website lead — Rooftoprob'
+      }, fields);
+      var r = await fetch('https://api.web3forms.com/submit', {
+        method:'POST', headers:{'Content-Type':'application/json', Accept:'application/json'},
+        body: JSON.stringify(body)
+      });
+      var d = await r.json().catch(function(){return {};});
+      return { ok: !!d.success };
+    }catch(e){ return { ok:false, reason:'error' }; }
+  };
+  // Route AI-chat conversations to Rob the moment a phone number appears
+  window.__rrpChatLeadSent = false;
+  window.RRP_maybeChatLead = function(history){
+    if(window.__rrpChatLeadSent) return;
+    var userText = (history||[]).filter(function(m){return m.role==='user';}).map(function(m){return m.content;}).join('\n');
+    var ph = userText.match(/(\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/);
+    if(!ph) return;
+    window.__rrpChatLeadSent = true;
+    var transcript = (history||[]).map(function(m){return (m.role==='user'?'Visitor: ':'Assistant: ')+m.content;}).join('\n\n');
+    window.RRP_sendLead({ subject:'🔥 New CHAT lead — Rooftoprob', phone: ph[0], message: transcript, _source:'ai_chat' });
+  };
 })();
 </script>
 </head>
@@ -980,6 +1075,15 @@
         <a href="tel:+13468264424" class="btn">&#9742; Call (346) 826-4424</a>
         <a href="mailto:rooftoprob2.0@gmail.com" class="btn ghost">Email Us</a>
       </div>
+
+      <form class="lead-form reveal" id="leadForm" autocomplete="on">
+        <input type="text" name="name" placeholder="Your name *" required />
+        <input type="tel" name="phone" placeholder="Phone number *" required />
+        <input class="full" type="text" name="address" placeholder="Property address or city" />
+        <textarea class="full" name="message" placeholder="What's going on with your roof? (leak, storm/hail, age, inspection…)"></textarea>
+        <button class="btn full" type="submit" id="leadSubmit">Request My Free Inspection</button>
+        <div class="lead-msg" id="leadMsg"></div>
+      </form>
       <div class="contact-grid">
         <a class="contact-card" href="tel:+13468264424">
           <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
@@ -1285,6 +1389,7 @@
         const reply = data.reply || "Sorry, I didn't catch that — mind rephrasing?";
         bubble(reply, 'bot');
         history.push({ role:'assistant', content:reply });
+        try{ if(window.RRP_maybeChatLead) window.RRP_maybeChatLead(history); }catch(e){}
       }catch(err){
         typing.remove();
         bubble("I'm having trouble connecting. Please call (346) 826-4424 and Rob will take care of you.", 'bot');
@@ -1520,6 +1625,107 @@
       doc.save('Rooftoprob-Roof-Report' + (safe ? '-'+safe : '') + '.pdf');
     }
   })();
+</script>
+
+<!-- ===== EXIT-INTENT LEAD POPUP ===== -->
+<div class="exitpop" id="exitPop" aria-hidden="true">
+  <div class="exitpop-card">
+    <button class="x" id="exitClose" aria-label="Close">&times;</button>
+    <h3>Wait — get your <span class="accent">free</span> roof inspection</h3>
+    <p>Storm or hail in your area? Leave your info and Rob will reach out to schedule a free, no-pressure inspection — usually same or next day.</p>
+    <form id="exitForm">
+      <input type="text" name="name" placeholder="Your name *" required />
+      <input type="tel" name="phone" placeholder="Phone number *" required />
+      <button class="btn full" type="submit">Claim My Free Inspection</button>
+      <div class="lead-msg" id="exitMsg"></div>
+    </form>
+    <small>No spam. Just an honest roofer. Or call (346) 826-4424.</small>
+  </div>
+</div>
+
+<!-- ===== LEAD-GEN HANDLERS (forms, exit popup, booking, review wiring, call tracking) ===== -->
+<script>
+(function(){
+  var cfg = window.RRP_CONFIG || {};
+  function send(fields){ return (window.RRP_sendLead ? window.RRP_sendLead(fields) : Promise.resolve({ok:false,reason:'not_configured'})); }
+
+  // ---- Contact lead form ----
+  var lf = document.getElementById('leadForm');
+  if(lf){
+    lf.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn = document.getElementById('leadSubmit'), msg = document.getElementById('leadMsg');
+      var f = { name: lf.name.value.trim(), phone: lf.phone.value.trim(), address: lf.address.value.trim(), message: lf.message.value.trim() };
+      if(!f.name || !f.phone){ msg.textContent = 'Please add your name and phone.'; return; }
+      btn.disabled = true; var orig = btn.textContent; btn.textContent = 'Sending…';
+      var res = await send({ subject:'🏠 New inspection request — Rooftoprob', name:f.name, phone:f.phone, address:f.address, message:f.message, _source:'contact_form' });
+      if(res.ok){
+        lf.reset(); msg.textContent = '✅ Got it! Rob will reach out shortly. For anything urgent, call (346) 826-4424.';
+      } else if(res.reason === 'not_configured'){
+        // graceful fallback so the lead is never lost
+        var body = encodeURIComponent('Name: '+f.name+'\nPhone: '+f.phone+'\nAddress: '+f.address+'\n\n'+f.message);
+        window.location.href = 'mailto:rooftoprob2.0@gmail.com?subject=Free%20Inspection%20Request&body=' + body;
+        msg.textContent = 'Opening your email app… or just call (346) 826-4424.';
+      } else {
+        msg.textContent = 'Hmm, that didn\'t send — please call (346) 826-4424.';
+      }
+      btn.disabled = false; btn.textContent = orig;
+    });
+  }
+
+  // ---- Exit-intent popup ----
+  var pop = document.getElementById('exitPop');
+  if(pop){
+    var shown = false;
+    function showPop(){
+      if(shown) return; try{ if(localStorage.getItem('rrpExit')==='1') return; }catch(e){}
+      shown = true; pop.classList.add('show'); pop.setAttribute('aria-hidden','false');
+      try{ localStorage.setItem('rrpExit','1'); }catch(e){}
+    }
+    function hidePop(){ pop.classList.remove('show'); pop.setAttribute('aria-hidden','true'); }
+    document.addEventListener('mouseout', function(e){ if(!e.relatedTarget && e.clientY <= 0) showPop(); });
+    setTimeout(showPop, 45000); // fallback for mobile / no mouse
+    document.getElementById('exitClose').addEventListener('click', hidePop);
+    pop.addEventListener('click', function(e){ if(e.target === pop) hidePop(); });
+    var ef = document.getElementById('exitForm');
+    ef.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var msg = document.getElementById('exitMsg');
+      var f = { name: ef.name.value.trim(), phone: ef.phone.value.trim() };
+      if(!f.name || !f.phone){ msg.textContent = 'Please add your name and phone.'; return; }
+      msg.textContent = 'Sending…';
+      var res = await send({ subject:'🔥 Exit-popup lead — Rooftoprob', name:f.name, phone:f.phone, _source:'exit_popup' });
+      if(res.ok || res.reason==='not_configured'){
+        msg.textContent = '✅ Thank you! Rob will be in touch shortly.';
+        setTimeout(hidePop, 1800);
+      } else { msg.textContent = 'Please call (346) 826-4424 — we\'d love to help.'; }
+    });
+  }
+
+  // ---- Booking button (only if a link is configured) ----
+  if(cfg.BOOKING_URL){
+    var actions = document.querySelector('#contact .cta-actions');
+    if(actions){
+      var a = document.createElement('a');
+      a.href = cfg.BOOKING_URL; a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'btn'; a.innerHTML = '&#128197; Book Your Inspection';
+      actions.appendChild(a);
+    }
+  }
+
+  // ---- Wire the Google review buttons (if a review link is configured) ----
+  if(cfg.GBP_REVIEW_URL){
+    document.querySelectorAll('#reviews a[target="_blank"]').forEach(function(a){ a.href = cfg.GBP_REVIEW_URL; });
+  }
+
+  // ---- Track click-to-call as conversions ----
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      try{ if(window.gtag) gtag('event','click_to_call'); }catch(e){}
+      try{ if(window.fbq) fbq('track','Contact'); }catch(e){}
+    });
+  });
+})();
 </script>
 </body>
 </html>
