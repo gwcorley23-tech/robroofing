@@ -1636,6 +1636,7 @@ window.RRP_CONFIG = {
     <form id="exitForm">
       <input type="text" name="name" placeholder="Your name *" required />
       <input type="tel" name="phone" placeholder="Phone number *" required />
+      <input type="email" name="email" placeholder="Email address *" required />
       <button class="btn full" type="submit">Claim My Free Inspection</button>
       <div class="lead-msg" id="exitMsg"></div>
     </form>
@@ -1691,10 +1692,10 @@ window.RRP_CONFIG = {
     ef.addEventListener('submit', async function(e){
       e.preventDefault();
       var msg = document.getElementById('exitMsg');
-      var f = { name: ef.name.value.trim(), phone: ef.phone.value.trim() };
-      if(!f.name || !f.phone){ msg.textContent = 'Please add your name and phone.'; return; }
+      var f = { name: ef.name.value.trim(), phone: ef.phone.value.trim(), email: ef.email.value.trim() };
+      if(!f.name || !f.phone || !f.email){ msg.textContent = 'Please add your name, phone, and email.'; return; }
       msg.textContent = 'Sending…';
-      var res = await send({ subject:'🔥 Exit-popup lead — Rooftoprob', name:f.name, phone:f.phone, _source:'exit_popup' });
+      var res = await send({ subject:'🔥 Exit-popup lead — Rooftoprob', name:f.name, phone:f.phone, email:f.email, _source:'exit_popup' });
       if(res.ok || res.reason==='not_configured'){
         msg.textContent = '✅ Thank you! Rob will be in touch shortly.';
         setTimeout(hidePop, 1800);
