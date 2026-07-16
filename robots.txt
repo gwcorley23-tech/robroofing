@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.rooftoprob.com/sitemap.xml
+Sitemap: https://www.rooftoprobroofing.com/sitemap.xml
